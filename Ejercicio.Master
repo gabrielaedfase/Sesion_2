@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="P2_Ejercicio.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+    <script languaje="C#" runat="server">
+        
+        protected void MostrarGrafico_ServerClick(object sender, EventArgs e)
+        {
+            Grafico.Src = "figura" + lista.SelectedIndex.ToString() + ".jpg";
+            Grafico.Alt = "Grafico Artefactos";
+            Grafico.Visible = true;
+        }
+        void Pulsado(Object sender, EventArgs args)
+        {
+            if(lista.Value=="Licuadora")
+                etiqueta.InnerText = " L0011 "+lista.Value+" Potencia 200w "+" Oster "+" S/ 120.00 ";
+            if(lista.Value=="Microondas")
+                etiqueta.InnerText = " M0901 "+lista.Value+" Potencia 250w "+" Sansung "+" S/ 500.00 ";
+            if(lista.Value=="Cocina")
+                etiqueta.InnerText = " C0010 "+lista.Value+" 5 Hornillas   "+" Indurama "+" S/ 2600.00 ";
+            if(lista.Value=="Aspiradora")
+                etiqueta.InnerText = " A0151 "+lista.Value+" Potencia 500w "+" Elextrolux "+" S/ 700.00 ";
+            if(lista.Value=="Vatidora")
+                etiqueta.InnerText = " V0088 "+lista.Value+" Potencia 200w "+" Oster "+" S/ 180.00 ";
+        }
+    </script>
+<head runat="server">
+    <title><%: Page.Title %> - Script ASP.NET</title>
+    <style type="text/css">
+        .nuevoEstilo1 {
+            background-image: url('/imagen.jpg');
+        }
+        estilox {
+            background-image: url('/imagen.jpg');
+        }
+    </style>
+</head>
+<body>
+    <form id="WebForm" method="post" runat="server" class="nuevoEstilo1">
+        <h1>SELECCIONE UN ARTEFACTO</h1>
+        <select id="lista" runat="server">
+            <option selected>Licuadora</option>
+            <option>Microondas</option>
+            <option>Cocina</option>
+            <option>Aspiradora</option>
+            <option>Vatidora</option>
+        </select>
+        <input type="button" id="boton" runat="server" value="Seleccionar" onserverclick="Pulsado" />
+        <br />
+        <br /><br />
+		<input type="submit" id="MostrarGrafico" runat="server" value="MostrarFigura" 
+				onserverclick="MostrarGrafico_ServerClick" />
+		<br /><br />
+		<img id="Grafico" runat="server" />
+        <div id="etiqueta" runat="server"></div>
+    </form>
+</body>
+</html>
+
